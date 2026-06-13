@@ -94,174 +94,289 @@ const GithubSection: React.FC = () => {
   const colors = isDark ? levelColors.dark : levelColors.light;
 
   return (
-    <section className="py-24 relative">
-      <div className="container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-[11px] font-semibold tracking-widest uppercase text-[#4F8CFF]">Code</span>
-            <div className="h-px w-12 bg-[#4F8CFF]/30" />
-          </div>
-          <div className="flex items-center gap-3">
-            <h2
-              className={`text-3xl sm:text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
-              style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}
-            >
-              GitHub Activity
-            </h2>
-            <div className={`flex items-center gap-1.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-              <GithubIcon />
-            </div>
-          </div>
-          <p className={`mt-2 text-[15px] ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-            Consistent, intentional progress — shipped in public.
-          </p>
-        </motion.div>
+<section className="py-12 sm:py-16 lg:py-24 relative">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="mb-8 sm:mb-10"
+    >
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-[11px] font-semibold tracking-widest uppercase text-[#4F8CFF]">
+          Code
+        </span>
+        <div className="h-px w-12 bg-[#4F8CFF]/30" />
+      </div>
 
-        <div ref={ref} className="grid lg:grid-cols-3 gap-6">
-          {/* Contribution Graph */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className={`lg:col-span-2 p-5 rounded-3xl border ${
-              isDark ? 'bg-[#111827] border-white/8' : 'bg-white border-gray-100 shadow-sm'
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+        <h2
+          className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}
+          style={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          GitHub Activity
+        </h2>
+
+        <div
+          className={`flex items-center gap-1.5 ${
+            isDark ? 'text-gray-400' : 'text-gray-500'
+          }`}
+        >
+          <GithubIcon />
+        </div>
+      </div>
+
+      <p
+        className={`mt-2 text-sm sm:text-[15px] ${
+          isDark ? 'text-gray-500' : 'text-gray-400'
+        }`}
+      >
+        Consistent, intentional progress — shipped in public.
+      </p>
+    </motion.div>
+
+    <div
+      ref={ref}
+      className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6"
+    >
+      {/* Contribution Graph */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className={`lg:col-span-2 p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border ${
+          isDark
+            ? 'bg-[#111827] border-white/8'
+            : 'bg-white border-gray-100 shadow-sm'
+        }`}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <p
+            className={`text-xs sm:text-[13px] font-semibold ${
+              isDark ? 'text-gray-300' : 'text-gray-700'
             }`}
           >
-            <div className="flex items-center justify-between mb-4">
-              <p className={`text-[13px] font-semibold ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                Contribution Activity
-              </p>
-              <span className={`text-[12px] ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                Past year
+            Contribution Activity
+          </p>
+
+          <span
+            className={`text-[11px] sm:text-[12px] ${
+              isDark ? 'text-gray-500' : 'text-gray-400'
+            }`}
+          >
+            Past year
+          </span>
+        </div>
+
+        <div className="overflow-x-auto no-scrollbar pb-2">
+          <div
+            className="flex gap-[2px] sm:gap-[3px]"
+            style={{ minWidth: 'max-content' }}
+          >
+            {contributions.map((week, wi) => (
+              <div key={wi} className="flex flex-col gap-[2px] sm:gap-[3px]">
+                {week.map((level, di) => (
+                  <motion.div
+                    key={di}
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{
+                      delay: (wi * 7 + di) * 0.001,
+                      duration: 0.2,
+                    }}
+                    className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] rounded-[2px]"
+                    style={{
+                      backgroundColor: colors[level],
+                    }}
+                    title={`${level} contributions`}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 mt-4 flex-wrap">
+          <span
+            className={`text-[10px] sm:text-[11px] ${
+              isDark ? 'text-gray-600' : 'text-gray-400'
+            }`}
+          >
+            Less
+          </span>
+
+          {colors.map((c, i) => (
+            <div
+              key={i}
+              className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] rounded-[2px]"
+              style={{ backgroundColor: c }}
+            />
+          ))}
+
+          <span
+            className={`text-[10px] sm:text-[11px] ${
+              isDark ? 'text-gray-600' : 'text-gray-400'
+            }`}
+          >
+            More
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Languages */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.15, duration: 0.6 }}
+        className={`p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border ${
+          isDark
+            ? 'bg-[#111827] border-white/8'
+            : 'bg-white border-gray-100 shadow-sm'
+        }`}
+      >
+        <p
+          className={`text-xs sm:text-[13px] font-semibold mb-4 ${
+            isDark ? 'text-gray-300' : 'text-gray-700'
+          }`}
+        >
+          Languages
+        </p>
+
+        <div className="flex h-2 rounded-full overflow-hidden mb-5">
+          {languages.map((lang) => (
+            <motion.div
+              key={lang.name}
+              initial={{ width: 0 }}
+              animate={
+                isInView
+                  ? { width: `${lang.percent}%` }
+                  : { width: 0 }
+              }
+              transition={{
+                delay: 0.4,
+                duration: 0.8,
+                ease: 'easeOut',
+              }}
+              style={{ backgroundColor: lang.color }}
+            />
+          ))}
+        </div>
+
+        <div className="space-y-3">
+          {languages.map((lang) => (
+            <div
+              key={lang.name}
+              className="flex items-center justify-between"
+            >
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: lang.color }}
+                />
+
+                <span
+                  className={`text-xs sm:text-[13px] ${
+                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  }`}
+                >
+                  {lang.name}
+                </span>
+              </div>
+
+              <span
+                className={`text-[11px] sm:text-[12px] font-medium tabular-nums ${
+                  isDark ? 'text-gray-500' : 'text-gray-400'
+                }`}
+              >
+                {lang.percent}%
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Repo Cards */}
+      {repos.map((repo, i) => (
+        <motion.a
+          key={repo.name}
+          href={repo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{
+            delay: i * 0.1 + 0.2,
+            duration: 0.5,
+          }}
+          className={`group p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-300 block ${
+            isDark
+              ? 'bg-[#111827] border-white/8 hover:border-white/20 hover:shadow-lg hover:shadow-black/30'
+              : 'bg-white border-gray-100 hover:border-gray-200 hover:shadow-md shadow-sm'
+          }`}
+        >
+          <div className="flex items-start justify-between mb-2 gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <GithubIcon />
+
+              <span
+                className={`text-[13px] sm:text-[14px] font-semibold truncate ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}
+                style={{
+                  fontFamily: 'Space Grotesk, sans-serif',
+                }}
+              >
+                {repo.name}
+              </span>
+            </div>
+          </div>
+
+          <p
+            className={`text-[11px] sm:text-[12px] mb-3 line-clamp-2 ${
+              isDark ? 'text-gray-500' : 'text-gray-400'
+            }`}
+          >
+            {repo.desc}
+          </p>
+
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-2 h-2 rounded-full"
+                style={{ backgroundColor: repo.color }}
+              />
+
+              <span
+                className={`text-[10px] sm:text-[11px] ${
+                  isDark ? 'text-gray-600' : 'text-gray-400'
+                }`}
+              >
+                {repo.lang}
               </span>
             </div>
 
-            {/* Grid */}
-            <div className="overflow-x-auto no-scrollbar">
-              <div className="flex gap-[3px]" style={{ minWidth: 'max-content' }}>
-                {contributions.map((week, wi) => (
-                  <div key={wi} className="flex flex-col gap-[3px]">
-                    {week.map((level, di) => (
-                      <motion.div
-                        key={di}
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : {}}
-                        transition={{ delay: (wi * 7 + di) * 0.001, duration: 0.2 }}
-                        className="w-[10px] h-[10px] rounded-[2px]"
-                        style={{ backgroundColor: colors[level] }}
-                        title={`${level} contributions`}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
+            <div className="flex items-center gap-1">
+              <span
+                className={`text-[10px] sm:text-[11px] ${
+                  isDark ? 'text-gray-600' : 'text-gray-400'
+                }`}
+              >
+                ⭐ {repo.stars}
+              </span>
             </div>
-
-            {/* Legend */}
-            <div className="flex items-center gap-1.5 mt-3">
-              <span className={`text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>Less</span>
-              {colors.map((c, i) => (
-                <div key={i} className="w-[10px] h-[10px] rounded-[2px]" style={{ backgroundColor: c }} />
-              ))}
-              <span className={`text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>More</span>
-            </div>
-          </motion.div>
-
-          {/* Languages */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.15, duration: 0.6 }}
-            className={`p-5 rounded-3xl border ${
-              isDark ? 'bg-[#111827] border-white/8' : 'bg-white border-gray-100 shadow-sm'
-            }`}
-          >
-            <p className={`text-[13px] font-semibold mb-4 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-              Languages
-            </p>
-
-            {/* Bar stack */}
-            <div className="flex h-2 rounded-full overflow-hidden mb-5">
-              {languages.map((lang) => (
-                <motion.div
-                  key={lang.name}
-                  initial={{ width: 0 }}
-                  animate={isInView ? { width: `${lang.percent}%` } : { width: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
-                  style={{ backgroundColor: lang.color }}
-                />
-              ))}
-            </div>
-
-            <div className="space-y-2.5">
-              {languages.map((lang) => (
-                <div key={lang.name} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: lang.color }} />
-                    <span className={`text-[13px] ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{lang.name}</span>
-                  </div>
-                  <span className={`text-[12px] font-medium tabular-nums ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                    {lang.percent}%
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Repos */}
-          {repos.map((repo, i) => (
-            <motion.a
-              key={repo.name}
-              href={repo.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1 + 0.2, duration: 0.5 }}
-              className={`group p-5 rounded-2xl border transition-all duration-300 block ${
-                isDark
-                  ? 'bg-[#111827] border-white/8 hover:border-white/20 hover:shadow-lg hover:shadow-black/30'
-                  : 'bg-white border-gray-100 hover:border-gray-200 hover:shadow-md shadow-sm'
-              }`}
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <GithubIcon />
-                  <span className={`text-[14px] font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}
-                    style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                    {repo.name}
-                  </span>
-                </div>
-                <svg className={`transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isDark ? 'text-gray-600' : 'text-gray-300'}`}
-                  viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                </svg>
-              </div>
-              <p className={`text-[12px] mb-3 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{repo.desc}</p>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: repo.color }} />
-                  <span className={`text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{repo.lang}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke={isDark ? '#6b7280' : '#9ca3af'} strokeWidth="2">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                  </svg>
-                  <span className={`text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{repo.stars}</span>
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-      </div>
-    </section>
+          </div>
+        </motion.a>
+      ))}
+    </div>
+  </div>
+</section>
   );
 };
 
