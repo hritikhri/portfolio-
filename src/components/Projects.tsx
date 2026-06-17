@@ -37,6 +37,40 @@ const projects = [
   //   demo: '#',
   // },
   {
+  id: 'inventory',
+  name: 'Inventory Management System',
+  tagline: 'Smart Stock & Product Management',
+  shortDesc: 'A complete inventory management solution for tracking products, stock levels, sales, and inventory operations efficiently.',
+  image: '/projects/inventory-management.png',
+  color: '#10B981',
+  colorLight: '#D1FAE5',
+  status: 'Built',
+  year: '2025',
+  story: 'I built this project to understand how real-world businesses manage inventory and product data. The goal was to create a practical system that could track stock movements, product details, and inventory updates in a structured way.',
+  why: 'Inventory management is a core requirement for many businesses. Building this project helped me learn CRUD operations, database management, and backend architecture while solving a real business problem.',
+  features: [
+    'Product inventory management',
+    'Add, update, and delete products',
+    'Stock quantity tracking',
+    'Product search and filtering',
+    'Inventory status monitoring',
+    'Responsive user interface',
+    'Database-driven product storage',
+    'Real-time inventory updates'
+  ],
+  tech: [
+    'C++',
+    'Object-Oriented Programming (OOP)',
+    'File Handling',
+    'Data Structures'
+  ],
+  challenges: 'Designing an efficient product management structure, maintaining data consistency, handling inventory updates correctly, and creating a user-friendly workflow.',
+  learnings: 'Strengthened my understanding of OOP concepts, file handling, data management, and designing software that mirrors real-world business operations.',
+  github: 'https://github.com/hritikhri/Inventory-management-system',
+  url: '',
+  demo: '#',
+},
+  {
     id: 'chatapp',
     name: 'Real-Time Chat App',
     tagline: 'Socket.IO Messaging Platform',
@@ -85,7 +119,7 @@ const projects = [
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Tailwind CSS'],
     challenges: 'Building the availability conflict detection system and designing a proper role-based access control system from scratch.',
     learnings: 'Learned how to model complex business rules in code, design multi-role systems, and build admin dashboards with real data.',
-    github: 'https://github.com/hritikhri/medicare-',
+    github: 'https://github.com/hritikhri/medicare',
     url:"",
     demo: '#',
   },{
@@ -433,14 +467,14 @@ const Projects: React.FC = () => {
                     >
                       <GithubIcon /> GitHub
                     </a>
-                    <a
+                    {/* <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary bg-[#4F8CFF] hover:bg-[#3a75e8] text-white text-[13px] font-medium shadow-lg shadow-blue-500/20"
                     >
                       <ExternalLink size={13} /> Live Demo
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>

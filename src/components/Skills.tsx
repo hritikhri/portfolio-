@@ -11,7 +11,7 @@ const skillCategories = [
       { name: 'React.js', level: 85, icon: '⚛️' },
       { name: 'Next.js', level: 75, icon: '▲' },
       { name: 'JavaScript', level: 88, icon: '🟨' },
-      { name: 'TypeScript', level: 70, icon: '🔷' },
+      // { name: 'TypeScript', level: 70, icon: '🔷' },
       { name: 'HTML5', level: 95, icon: '🔶' },
       { name: 'CSS3', level: 90, icon: '🔵' },
       { name: 'Tailwind CSS', level: 85, icon: '💨' },
@@ -52,7 +52,7 @@ const skillCategories = [
 ];
 
 const SkillBar: React.FC<{ name: string; level: number; icon: string; index: number; isDark: boolean; isInView: boolean }> = ({
-  name, level, icon, index, isDark, isInView,
+  name, icon, index, isDark, isInView,
 }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -83,18 +83,18 @@ const SkillBar: React.FC<{ name: string; level: number; icon: string; index: num
         <span className={`text-[11px] font-semibold tabular-nums ${
           hovered ? 'text-[#4F8CFF]' : isDark ? 'text-gray-500' : 'text-gray-400'
         }`}>
-          {level}%
+          {/* {level}% */}
         </span>
       </div>
-      <div className={`h-1 rounded-full overflow-hidden ${isDark ? 'bg-white/8' : 'bg-gray-100'}`}>
+      {/* <div className={`h-1 rounded-full overflow-hidden ${isDark ? 'bg-white/8' : 'bg-gray-100'}`}>
         <motion.div
           className="h-full rounded-full"
           style={{ background: 'linear-gradient(90deg, #4F8CFF, #a78bfa)' }}
           initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : { width: 0 }}
+          // animate={isInView ? { width: `${level}%` } : { width: 0 }}
           transition={{ delay: index * 0.06 + 0.3, duration: 0.7, ease: 'easeOut' }}
         />
-      </div>
+      </div> */}
     </motion.div>
   );
 };

@@ -218,6 +218,7 @@ const Hero: React.FC = () => {
             </motion.p>
 
             {/* CTA Buttons */}
+            {/* <div className="sm:flex bg-red-900 item-center"> */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 20 },
@@ -258,6 +259,7 @@ const Hero: React.FC = () => {
                 <Download size={15} /> Download Resume
               </motion.a>
             </motion.div>
+            {/* </div> */}
 
             {/* Social links */}
             <motion.div

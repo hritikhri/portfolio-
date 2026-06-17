@@ -120,7 +120,7 @@ const CurrentlyLearning: React.FC = () => {
               </p>
 
               {/* Progress bar */}
-              <div>
+              {/* <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className={`text-[11px] font-medium ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>Progress</span>
                   <span className="text-[11px] font-semibold text-[#4F8CFF]">{item.progress}%</span>
@@ -134,7 +134,7 @@ const CurrentlyLearning: React.FC = () => {
                     transition={{ delay: index * 0.1 + 0.4, duration: 0.8, ease: 'easeOut' }}
                   />
                 </div>
-              </div>
+              </div> */}
             </motion.div>
           ))}
         </div>
