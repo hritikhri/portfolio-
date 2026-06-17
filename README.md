@@ -20,7 +20,7 @@
 Example:
 
 ```text
-https://your-portfolio-url.vercel.app
+https://hritikk.vercel.app/
 ```
 
 ---
@@ -102,7 +102,7 @@ src/
 
 ## 🧩 Application Flow
 
-```jsx
+```tsx
 ThemeProvider
 │
 ├── ScrollProgress
@@ -176,8 +176,7 @@ A passionate **Full Stack Developer** focused on creating scalable and modern we
 - Tailwind CSS
 - REST APIs
 - Git & GitHub
-- MERN Stack
-
+  
 ---
 
 ## 📚 Currently Learning
@@ -213,11 +212,11 @@ https://github.com/hritikhri
 
 ### LinkedIn
 
-Add your LinkedIn Profile URL
+https://www.linkedin.com/in/hritik-kumar-2b6b9724a/
 
 ### Portfolio
 
-Add your Live Portfolio URL
+https://hritikk.vercel.app/
 
 ---
 
@@ -230,14 +229,6 @@ If you like this portfolio, consider giving the repository a **Star ⭐**
 🍴 Fork this repo
 🚀 Use it as inspiration
 ```
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 <div align="center">
 
