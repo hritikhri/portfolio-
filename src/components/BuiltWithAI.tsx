@@ -491,15 +491,6 @@ const BuiltWithAI: React.FC = () => {
                   >
                     <GithubIcon /> GitHub
                   </a>
-
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary bg-[#4F8CFF] hover:bg-[#3a75e8] text-white text-[13px] font-medium"
-                  >
-                    <ExternalLink size={13} /> Live Demo
-                  </a>
                 </div>
               </div>
             </motion.div>

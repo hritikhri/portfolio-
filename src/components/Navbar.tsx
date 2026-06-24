@@ -13,30 +13,24 @@ const navLinks = [
 
 const Navbar: React.FC = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [visible, setVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
-  const ticking = useRef(false);
+  const themeMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navContainerRef = useRef<HTMLDivElement>(null);
 
+  // Scroll: detect scrolled state for shrink/grow
   useEffect(() => {
     const handleScroll = () => {
-      if (!ticking.current) {
-        requestAnimationFrame(() => {
-          const currentY = window.scrollY;
-          if (currentY < 80) {
-            setVisible(true);
-          } else if (currentY > lastScrollY.current + 5) {
-            setVisible(false);
-            setMobileOpen(false);
-          } else if (currentY < lastScrollY.current - 5) {
-            setVisible(true);
-          }
-          lastScrollY.current = currentY;
-          ticking.current = false;
-        });
-        ticking.current = true;
+      const currentY = window.scrollY;
+      setScrolled(currentY > 50);
+
+      // Close menus when scrolling
+      if (currentY > 50) {
+        setMobileOpen(false);
+        setThemeMenuOpen(false);
       }
     };
 
@@ -44,6 +38,39 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+
+      if (
+        themeMenuOpen &&
+        themeMenuRef.current &&
+        !themeMenuRef.current.contains(target)
+      ) {
+        setThemeMenuOpen(false);
+      }
+
+      if (
+        mobileOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(target) &&
+        navContainerRef.current &&
+        !navContainerRef.current.contains(target)
+      ) {
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [themeMenuOpen, mobileOpen]);
+
+  // Section observer
   useEffect(() => {
     const sections = navLinks.map((l) => l.href.slice(1));
     const observers: IntersectionObserver[] = [];
@@ -84,81 +111,108 @@ const Navbar: React.FC = () => {
     );
 
   return (
-    <>
-      <AnimatePresence>
-        <motion.nav
-          initial={{ y: -80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-          className="fixed top-4 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 md:px-8"
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 md:px-8"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        pointerEvents: 'none',
+      }}
+    >
+      <motion.div
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        className="w-full flex flex-col items-center"
+        style={{ pointerEvents: 'auto' }}
+      >
+        {/* ===== MAIN NAV CONTAINER ===== */}
+        <motion.div
+          ref={navContainerRef}
+          animate={{
+            maxWidth: scrolled ? 380 : 720,
+            marginTop: scrolled ? 8 : 16,
+          }}
+          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+          className={`w-full flex items-center gap-1 rounded-full border transition-colors duration-300 ${
+            isDark
+              ? 'bg-[#111827]/80 border-white/10 backdrop-blur-xl'
+              : 'bg-white/80 border-black/8 shadow-lg shadow-black/5 backdrop-blur-xl'
+          }`}
+          style={{
+            padding: scrolled ? '4px 8px' : '6px 12px',
+            transition: 'padding 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
         >
-          {/* ===== MAIN NAV CONTAINER ===== */}
-          <div
-            className={`w-full max-w-[720px] flex items-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border transition-colors duration-200 ${
-              isDark
-                ? 'bg-[#111827]/80 border-white/10'
-                : 'bg-white/80 border-black/8 shadow-lg shadow-black/5'
+          {/* Logo */}
+          <span
+            className={`font-semibold mr-1 sm:mr-3 pl-1.5 sm:pl-2 cursor-pointer shrink-0 transition-all duration-300 ${
+              isDark ? 'text-white' : 'text-gray-900'
             }`}
+            style={{
+              fontFamily: 'Space Grotesk, sans-serif',
+              letterSpacing: '-0.02em',
+              fontSize: scrolled ? '12px' : '14px',
+            }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            {/* Logo */}
-            <span
-              className={`font-semibold text-sm mr-1 sm:mr-3 pl-1.5 sm:pl-2 cursor-pointer shrink-0 ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-              style={{
-                fontFamily: 'Space Grotesk, sans-serif',
-                letterSpacing: '-0.02em',
-              }}
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              hritik.
-            </span>
+            hritik.
+          </span>
 
-            {/* Desktop nav links — hidden on mobile, visible md+ */}
-            <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.slice(1);
-                return (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    className={`relative px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 whitespace-nowrap ${
-                      isActive
-                        ? isDark
-                          ? 'text-white bg-white/10'
-                          : 'text-gray-900 bg-black/8'
-                        : isDark
-                        ? 'text-gray-400 hover:text-white hover:bg-white/8'
-                        : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
-                    }`}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-active"
-                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4F8CFF]"
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Right actions: theme + hamburger */}
-            <div className="flex items-center gap-1 sm:gap-1.5 ml-auto shrink-0">
-              {/* Theme toggle */}
-              <div className="relative">
+          {/* Desktop nav links — hidden on mobile, visible md+ */}
+          <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
                 <button
-                  onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-                  className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
-                    isDark
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`relative py-1.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                    isActive
+                      ? isDark
+                        ? 'text-white bg-white/10'
+                        : 'text-gray-900 bg-black/8'
+                      : isDark
                       ? 'text-gray-400 hover:text-white hover:bg-white/8'
                       : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
                   }`}
+                  style={{
+                    paddingLeft: scrolled ? 8 : 14,
+                    paddingRight: scrolled ? 8 : 14,
+                    fontSize: scrolled ? '11px' : '13px',
+                    transition:
+                      'padding 0.35s cubic-bezier(0.4,0,0.2,1), font-size 0.35s cubic-bezier(0.4,0,0.2,1)',
+                  }}
                 >
-                  {themeIcon}
-                  {/* Hide label on very small screens */}
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4F8CFF]"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right actions: theme + hamburger */}
+          <div className="flex items-center gap-1 sm:gap-1.5 ml-auto shrink-0">
+            {/* Theme toggle */}
+            <div className="relative" ref={themeMenuRef}>
+              <button
+                onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+                className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
+                  isDark
+                    ? 'text-gray-400 hover:text-white hover:bg-white/8'
+                    : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+                }`}
+              >
+                {themeIcon}
+                {!scrolled && (
                   <span className="hidden lg:inline">
                     {theme === 'system'
                       ? 'System'
@@ -166,121 +220,122 @@ const Navbar: React.FC = () => {
                       ? 'Dark'
                       : 'Light'}
                   </span>
-                </button>
-
-                <AnimatePresence>
-                  {themeMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: -8 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: -8 }}
-                      transition={{ duration: 0.15 }}
-                      className={`absolute right-0 top-full mt-2 rounded-2xl border overflow-hidden shadow-xl z-50 ${
-                        isDark
-                          ? 'bg-[#1a2234] border-white/10'
-                          : 'bg-white border-black/8'
-                      }`}
-                      style={{ minWidth: '140px' }}
-                      onMouseLeave={() => setThemeMenuOpen(false)}
-                    >
-                      {[
-                        {
-                          value: 'light' as const,
-                          icon: <Sun size={13} />,
-                          label: 'Light',
-                        },
-                        {
-                          value: 'dark' as const,
-                          icon: <Moon size={13} />,
-                          label: 'Dark',
-                        },
-                        {
-                          value: 'system' as const,
-                          icon: <Monitor size={13} />,
-                          label: 'System',
-                        },
-                      ].map((opt) => (
-                        <button
-                          key={opt.value}
-                          onClick={() => {
-                            setTheme(opt.value);
-                            setThemeMenuOpen(false);
-                          }}
-                          className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium transition-colors duration-150 ${
-                            theme === opt.value
-                              ? isDark
-                                ? 'text-white bg-white/10'
-                                : 'text-gray-900 bg-black/5'
-                              : isDark
-                              ? 'text-gray-400 hover:text-white hover:bg-white/5'
-                              : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
-                          }`}
-                        >
-                          {opt.icon}
-                          {opt.label}
-                          {theme === opt.value && (
-                            <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#4F8CFF]" />
-                          )}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Mobile hamburger — visible below md */}
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className={`md:hidden p-1.5 rounded-full transition-colors duration-150 ${
-                  isDark
-                    ? 'text-gray-400 hover:text-white hover:bg-white/8'
-                    : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
-                }`}
-              >
-                {mobileOpen ? <X size={16} /> : <Menu size={16} />}
+                )}
               </button>
-            </div>
-          </div>
 
-          {/* ===== MOBILE DROPDOWN MENU ===== */}
-          <AnimatePresence>
-            {mobileOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.97 }}
-                transition={{ duration: 0.2 }}
-                className={`absolute top-full left-3 right-3 sm:left-6 sm:right-6 md:hidden rounded-2xl border p-3 z-50 ${
-                  isDark
-                    ? 'bg-[#111827]/95 border-white/10 backdrop-blur-xl'
-                    : 'bg-white/95 border-black/8 shadow-xl backdrop-blur-xl'
-                }`}
-              >
-                <div className="flex flex-col gap-0.5">
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.href}
-                      onClick={() => handleNavClick(link.href)}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-[14px] font-medium transition-colors duration-150 ${
-                        activeSection === link.href.slice(1)
-                          ? isDark
-                            ? 'text-white bg-white/10'
-                            : 'text-gray-900 bg-black/5'
-                          : isDark
-                          ? 'text-gray-400 hover:text-white hover:bg-white/5'
-                          : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
-                      }`}
-                    >
-                      {link.label}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.nav>
-      </AnimatePresence>
-    </>
+              <AnimatePresence>
+                {themeMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -8 }}
+                    transition={{ duration: 0.15 }}
+                    className={`absolute right-0 top-full mt-2 rounded-2xl border overflow-hidden shadow-xl z-50 ${
+                      isDark
+                        ? 'bg-[#1a2234] border-white/10'
+                        : 'bg-white border-black/8'
+                    }`}
+                    style={{ minWidth: '140px' }}
+                  >
+                    {[
+                      {
+                        value: 'light' as const,
+                        icon: <Sun size={13} />,
+                        label: 'Light',
+                      },
+                      {
+                        value: 'dark' as const,
+                        icon: <Moon size={13} />,
+                        label: 'Dark',
+                      },
+                      {
+                        value: 'system' as const,
+                        icon: <Monitor size={13} />,
+                        label: 'System',
+                      },
+                    ].map((opt) => (
+                      <button
+                        key={opt.value}
+                        onClick={() => {
+                          setTheme(opt.value);
+                          setThemeMenuOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium transition-colors duration-150 ${
+                          theme === opt.value
+                            ? isDark
+                              ? 'text-white bg-white/10'
+                              : 'text-gray-900 bg-black/5'
+                            : isDark
+                            ? 'text-gray-400 hover:text-white hover:bg-white/5'
+                            : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
+                        }`}
+                      >
+                        {opt.icon}
+                        {opt.label}
+                        {theme === opt.value && (
+                          <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#4F8CFF]" />
+                        )}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Mobile hamburger — visible below md */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className={`md:hidden p-1.5 rounded-full transition-colors duration-150 ${
+                isDark
+                  ? 'text-gray-400 hover:text-white hover:bg-white/8'
+                  : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+              }`}
+            >
+              {mobileOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
+        </motion.div>
+
+        {/* ===== MOBILE DROPDOWN MENU ===== */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              ref={mobileMenuRef}
+              initial={{ opacity: 0, y: -10, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.97 }}
+              transition={{ duration: 0.2 }}
+              className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-3 mt-2 z-50 ${
+                isDark
+                  ? 'bg-[#111827]/95 border-white/10 backdrop-blur-xl'
+                  : 'bg-white/95 border-black/8 shadow-xl backdrop-blur-xl'
+              }`}
+              style={{ maxWidth: 720 }}
+            >
+              <div className="flex flex-col gap-0.5">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    className={`w-full text-left px-4 py-3 rounded-xl text-[14px] font-medium transition-colors duration-150 ${
+                      activeSection === link.href.slice(1)
+                        ? isDark
+                          ? 'text-white bg-white/10'
+                          : 'text-gray-900 bg-black/5'
+                        : isDark
+                        ? 'text-gray-400 hover:text-white hover:bg-white/5'
+                        : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </nav>
   );
 };
 
