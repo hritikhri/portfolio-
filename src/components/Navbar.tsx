@@ -226,22 +226,13 @@ useEffect(() => {
             <div className="relative" ref={themeMenuRef}>
            <button
   onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-  className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
+  className={`flex items-center justify-center p-2 rounded-full transition-all duration-200 ${
     isDark
       ? "text-gray-400 hover:text-white hover:bg-white/8"
       : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
   }`}
 >
   {themeIcon}
-  {!scrolled && (
-    <span className="hidden lg:inline">
-      {theme === "system"
-        ? "System"
-        : theme === "dark"
-          ? "Dark"
-          : "Light"}
-    </span>
-  )}
 </button>
 
               <AnimatePresence>
