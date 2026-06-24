@@ -125,7 +125,7 @@ return (
               letterSpacing: "-0.01em",
             }}
           >
-            A BCA student who enjoys turning ideas into real software products.
+            A BCA graduate who enjoys turning ideas into real software products.
           </motion.p>
 
           {/* Description */}

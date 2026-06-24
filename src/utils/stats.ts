@@ -66,7 +66,7 @@ export const focusedOn = [
   "Backend Architecture",
   "AI Coding Tools",
   "Full-Stack Development",
-];
+]; 
 
 export const skillCategories = [
   {
