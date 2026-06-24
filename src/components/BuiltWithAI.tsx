@@ -297,7 +297,7 @@ const BuiltWithAI: React.FC = () => {
                 letterSpacing: "-0.02em",
               }}
             >
-              AI-powered things I’ve built
+              Things I’ve built with AI
             </h2>
 
             <p

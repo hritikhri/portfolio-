@@ -1,8 +1,8 @@
 export const mystats = [
-  { value: "15+", label: "Projects built" },
+  { value: "18+", label: "Projects built" },
   { value: "18+", label: "Technologies" },
   { value: "3+", label: "Years learning" },
-  { value: "5", label: "Certifications" },
+  { value: "6+", label: "Certifications" },
 ];
 
 export const mylinks = [
@@ -30,7 +30,7 @@ export const mylinks = [
 
 export const counters = [
   {
-    value: 15,
+    value: 18,
     suffix: "+",
     label: "Projects Built",
     emoji: "🚀",
@@ -44,7 +44,7 @@ export const counters = [
     desc: "Tools learned by building",
   },
   {
-    value: 5,
+    value: 6,
     suffix: "+",
     label: "Certifications",
     emoji: "🏆",
@@ -194,7 +194,7 @@ export const aiProjects = [
       "Tailwind CSS",
     ],
 
-    aiTools: ["ChatGPT", "Prompt Engineering", "GitHub Copilot"],
+    aiTools: ["ChatGPT", "Claude", "Gemini", "Cursor"],
 
     challenges:
       "The biggest challenge was designing relationships between users, communities, and events in MongoDB while keeping queries efficient. Managing authentication, authorization, and ensuring secure access across different user actions also required careful backend architecture.",
@@ -219,7 +219,7 @@ export const projects = [
     color: "#10B981",
     colorLight: "#D1FAE5",
     status: "Built",
-    year: "2025",
+    year: "Oct 2025 – Nov 2025",
     story:
       "I built this project to understand how real-world businesses manage inventory and product data. The goal was to create a practical system that could track stock movements, product details, and inventory updates in a structured way.",
     why: "Inventory management is a core requirement for many businesses. Building this project helped me learn CRUD operations, database management, and backend architecture while solving a real business problem.",
@@ -229,7 +229,6 @@ export const projects = [
       "Stock quantity tracking",
       "Product search and filtering",
       "Inventory status monitoring",
-      "Responsive user interface",
       "Database-driven product storage",
       "Real-time inventory updates",
     ],
@@ -257,17 +256,16 @@ export const projects = [
     color: "#0EA5E9",
     colorLight: "#E0F2FE",
     status: "Built",
-    year: "2025",
+    year: "Jan 2025 – Mar 2025",
     story:
       "After using Socket.IO in smaller features, I wanted to build something where real-time was the core feature — not an afterthought. Built this to truly understand how bidirectional communication works at the protocol level.",
     why: "WebSockets are foundational to modern apps. I needed to really learn them, not just copy-paste examples.",
     features: [
       "Real-time messaging with Socket.IO",
-      "Public and private chat rooms",
-      "Typing indicators",
-      "Online/offline presence",
+      "Private chatting",
+      "Cloudinary available",
+      "Profile Editing avilable",
       "Message history persistence",
-      "Responsive mobile UI",
     ],
     tech: ["React.js", "Node.js", "Socket.IO", "Express.js", "MongoDB"],
     challenges:
@@ -288,7 +286,7 @@ export const projects = [
     color: "#059669",
     colorLight: "#ECFDF5",
     status: "Built",
-    year: "2025",
+    year: "Dec 2025 - Feb 2026",
     story:
       "Healthcare software is notoriously bad UX. I wanted to build something that could actually be used by real doctors and patients — clean, fast, and functional.",
     why: "Wanted to work with a domain that had complex business logic: appointments, availability, roles, and records.",
@@ -325,7 +323,7 @@ export const projects = [
     color: "#8B5CF6",
     colorLight: "#F3E8FF",
     status: "Built",
-    year: "2025",
+    year: "Sep 2024 – Nov 2024",
     story:
       "Social media applications combine some of the most challenging aspects of web development—authentication, user relationships, content feeds, media handling, and real-time interactions. I built this platform to gain hands-on experience with large-scale application architecture and user-centric design.",
     why: "I wanted to understand how platforms like Instagram and Facebook manage user-generated content, social interactions, and real-time communication while maintaining a smooth user experience.",
@@ -355,7 +353,7 @@ export const projects = [
       "Designing efficient relationships between users, implementing the follow/unfollow system, managing real-time updates, optimizing database queries for feeds, and ensuring secure authentication throughout the application.",
     learnings:
       "Learned how social networking platforms manage complex user relationships, handle large amounts of dynamic content, implement real-time features, and build scalable full-stack applications using the MERN stack.",
-    github: "https://github.com/hritikhri/Social-Media-Platform-MERN-",
+    github: "https://github.com/hritikhri/Social-Media-Platform-MERN",
     url: "",
     demo: "#",
   },
@@ -369,18 +367,16 @@ export const projects = [
     color: "#0A66C2",
     colorLight: "#EAF4FF",
     status: "Built",
-    year: "2026",
+    year: "2024",
     story:
       "I wanted to understand how large-scale social networking platforms work behind the scenes. LinkedIn combines professional networking, content sharing, messaging, and profile management, making it a perfect project to strengthen my full-stack development skills.",
     why: "To learn how professional social media platforms handle user connections, feeds, authentication, profile management, and real-time interactions.",
     features: [
-      "User authentication and authorization",
       "Professional profile creation and editing",
       "Profile picture and cover image upload",
       "Create, edit, and delete posts",
       "Like and comment on posts",
       "Send and accept connection requests",
-      "Real-time messaging system",
       "News feed with post updates",
       "Search users by name and skills",
       "Responsive design for mobile and desktop",
@@ -414,7 +410,7 @@ export const projects = [
     color: "#F59E0B",
     colorLight: "#FEF3C7",
     status: "Built",
-    year: "2025",
+    year: "2024",
 
     story:
       "I built this project to understand how modern e-commerce platforms work, from product management to user authentication and cart functionality.",
@@ -444,19 +440,19 @@ export const projects = [
 ];
 
 export const certs = [
-  // {
-  //   title: "REST API",
-  //   issuer: "HackerRank",
-  //   year: "2025",
-  //   emoji: "🔗",
-  //   color: "#00B98E",
-  //   colorBg: "#00B98E15",
-  //   badge: "⭐ Verified",
-  //   url: "https://www.hackerrank.com/certificates/992656be24de",
-  //   preview: "https://www.hackerrank.com/certificates/iframe/992656be24de",
-  //   description:
-  //     "Demonstrates proficiency in REST API design principles, HTTP methods, status codes, and integration patterns.",
-  // },
+  {
+    title: "REST API",
+    issuer: "HackerRank",
+    year: "2025",
+    emoji: "🔗",
+    color: "#00B98E",
+    colorBg: "#00B98E15",
+    badge: "⭐ Verified",
+    url: "https://www.hackerrank.com/certificates/992656be24de",
+    preview: "https://www.hackerrank.com/certificates/iframe/992656be24de",
+    description:
+      "Demonstrates proficiency in REST API design principles, HTTP methods, status codes, and integration patterns.",
+  },
   {
     title: "Python Basics",
     issuer: "HackerRank",
@@ -510,6 +506,19 @@ export const certs = [
     description:
       "Mastered modern React.js development including reusable components, Hooks, Context API, React Router, API integration, state management, and building production-ready frontend applications through practical projects.",
   },
+  {
+  title: "Git for Beginners",
+  issuer: "Udemy",
+  year: "2026",
+  emoji: "🔧",
+  color: "#A435F0",
+  colorBg: "#A435F015",
+  badge: "🎓 Certified",
+  url: "https://www.udemy.com/certificate/UC-25a2d2c4-8b64-4ea0-9f7d-55e8fae035b9/",
+  preview: "https://www.udemy.com/certificate/UC-25a2d2c4-8b64-4ea0-9f7d-55e8fae035b9/",
+  description:
+    "Demonstrates foundational knowledge of Git version control, including repositories, commits, branching, merging, and collaboration workflows using Git and GitHub.",
+},
 ];
 
 export const repos = [
