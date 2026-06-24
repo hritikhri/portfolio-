@@ -104,17 +104,6 @@ export const skillCategories = [
     ],
   },
   {
-    id: "tools",
-    label: "Tools",
-    emoji: "🛠️",
-    skills: [
-      { name: "Git", level: 82, icon: "🌿" },
-      { name: "GitHub", level: 84, icon: "🐙" },
-      { name: "VS Code", level: 90, icon: "💻" },
-      { name: "Postman", level: 75, icon: "📮" },
-    ],
-  },
-  {
     id: "languages",
     label: "Programming Languages",
     emoji: "💻",
@@ -123,6 +112,17 @@ export const skillCategories = [
       { name: "C++", level: 80, icon: "⚡" },
       { name: "Java", level: 70, icon: "☕" },
       { name: "JavaScript", level: 88, icon: "🟨" },
+    ],
+  },
+  {
+    id: "tools",
+    label: "Tools",
+    emoji: "🛠️",
+    skills: [
+      { name: "Git", level: 82, icon: "🌿" },
+      { name: "GitHub", level: 84, icon: "🐙" },
+      { name: "VS Code", level: 90, icon: "💻" },
+      { name: "Postman", level: 75, icon: "📮" },
     ],
   },
 ];
