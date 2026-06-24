@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Monitor, Menu, X } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon, Monitor, Menu, X } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: "About", href: "#about" },
+  { label: "Journey", href: "#journey" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar: React.FC = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -23,11 +23,11 @@ const Navbar: React.FC = () => {
   const navContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-  const check = () => setIsMobile(window.innerWidth < 768);
-  check(); // run on mount
-  window.addEventListener('resize', check);
-  return () => window.removeEventListener('resize', check);
-}, []);
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check(); // run on mount
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Scroll: detect scrolled state for shrink/grow
   useEffect(() => {
@@ -42,8 +42,8 @@ const Navbar: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Close dropdowns on outside click
@@ -70,11 +70,11 @@ const Navbar: React.FC = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [themeMenuOpen, mobileOpen]);
 
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
         ([entry]) => {
           if (entry.isIntersecting) setActiveSection(id);
         },
-        { rootMargin: '-30% 0px -60% 0px' }
+        { rootMargin: "-30% 0px -60% 0px" },
       );
       obs.observe(el);
       observers.push(obs);
@@ -103,16 +103,16 @@ const Navbar: React.FC = () => {
     setMobileOpen(false);
     const el = document.querySelector(href);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   const themeIcon =
-    theme === 'dark' ? (
+    theme === "dark" ? (
       <Moon size={15} />
-    ) : theme === 'light' ? (
+    ) : theme === "light" ? (
       <Sun size={15} />
     ) : (
       <Monitor size={15} />
@@ -122,12 +122,12 @@ const Navbar: React.FC = () => {
     <nav
       className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 md:px-8"
       style={{
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
-        pointerEvents: 'none',
+        pointerEvents: "none",
       }}
     >
       <motion.div
@@ -135,40 +135,40 @@ const Navbar: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
         className="w-full flex flex-col items-center"
-        style={{ pointerEvents: 'auto' }}
+        style={{ pointerEvents: "auto" }}
       >
         {/* ===== MAIN NAV CONTAINER ===== */}
         <motion.div
           ref={navContainerRef}
           animate={{
-  // mobile: 320 → 240   |   desktop: 720 → 420
-  maxWidth: scrolled
-    ? isMobile ? 240 : 420   // ← AFTER scroll
-    : isMobile ? 320 : 720,  // ← BEFORE scroll
-  marginTop: scrolled ? 8 : 16,
-}}
+            // mobile: 320 → 240   |   desktop: 720 → 420
+            maxWidth: scrolled
+              ? isMobile ? 240 : 420 // ← AFTER scroll
+              : isMobile ? 320 : 720, // ← BEFORE scroll
+            marginTop: scrolled ? 8 : 16,
+          }}
           transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
           className={`w-full flex items-center gap-1 rounded-full border transition-colors duration-300 ${
             isDark
-              ? 'bg-[#111827]/80 border-white/10 backdrop-blur-xl'
-              : 'bg-white/80 border-black/8 shadow-lg shadow-black/5 backdrop-blur-xl'
+              ? "bg-[#111827]/80 border-white/10 backdrop-blur-xl"
+              : "bg-white/80 border-black/8 shadow-lg shadow-black/5 backdrop-blur-xl"
           }`}
           style={{
-            padding: scrolled ? '4px 8px' : '6px 12px',
-            transition: 'padding 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            padding: scrolled ? "6px 8px" : "6px 12px",
+            transition: "padding 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           {/* Logo */}
           <span
             className={`font-semibold mr-1 sm:mr-3 pl-1.5 sm:pl-2 cursor-pointer shrink-0 transition-all duration-300 ${
-              isDark ? 'text-white' : 'text-gray-900'
+              isDark ? "text-white" : "text-gray-900"
             }`}
             style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              letterSpacing: '-0.02em',
-              fontSize: scrolled ? '12px' : '14px',
+              fontFamily: "Space Grotesk, sans-serif",
+              letterSpacing: "-0.02em",
+              fontSize: scrolled ? "12px" : "14px",
             }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             hritik.
           </span>
@@ -184,18 +184,18 @@ const Navbar: React.FC = () => {
                   className={`relative py-1.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
                     isActive
                       ? isDark
-                        ? 'text-white bg-white/10'
-                        : 'text-gray-900 bg-black/8'
+                        ? "text-white bg-white/10"
+                        : "text-gray-900 bg-black/8"
                       : isDark
-                      ? 'text-gray-400 hover:text-white hover:bg-white/8'
-                      : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+                        ? "text-gray-400 hover:text-white hover:bg-white/8"
+                        : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
                   }`}
                   style={{
                     paddingLeft: scrolled ? 8 : 14,
                     paddingRight: scrolled ? 8 : 14,
-                    fontSize: scrolled ? '11px' : '13px',
+                    fontSize: scrolled ? "11px" : "13px",
                     transition:
-                      'padding 0.35s cubic-bezier(0.4,0,0.2,1), font-size 0.35s cubic-bezier(0.4,0,0.2,1)',
+                      "padding 0.35s cubic-bezier(0.4,0,0.2,1), font-size 0.35s cubic-bezier(0.4,0,0.2,1)",
                   }}
                 >
                   {link.label}
@@ -218,18 +218,18 @@ const Navbar: React.FC = () => {
                 onClick={() => setThemeMenuOpen(!themeMenuOpen)}
                 className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 ${
                   isDark
-                    ? 'text-gray-400 hover:text-white hover:bg-white/8'
-                    : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+                    ? "text-gray-400 hover:text-white hover:bg-white/8"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
                 }`}
               >
                 {themeIcon}
                 {!scrolled && (
                   <span className="hidden lg:inline">
-                    {theme === 'system'
-                      ? 'System'
-                      : theme === 'dark'
-                      ? 'Dark'
-                      : 'Light'}
+                    {theme === "system"
+                      ? "System"
+                      : theme === "dark"
+                        ? "Dark"
+                        : "Light"}
                   </span>
                 )}
               </button>
@@ -243,26 +243,26 @@ const Navbar: React.FC = () => {
                     transition={{ duration: 0.15 }}
                     className={`absolute right-0 top-full mt-2 rounded-2xl border overflow-hidden shadow-xl z-50 ${
                       isDark
-                        ? 'bg-[#1a2234] border-white/10'
-                        : 'bg-white border-black/8'
+                        ? "bg-[#1a2234] border-white/10"
+                        : "bg-white border-black/8"
                     }`}
-                    style={{ minWidth: '140px' }}
+                    style={{ minWidth: "140px" }}
                   >
                     {[
                       {
-                        value: 'light' as const,
+                        value: "light" as const,
                         icon: <Sun size={13} />,
-                        label: 'Light',
+                        label: "Light",
                       },
                       {
-                        value: 'dark' as const,
+                        value: "dark" as const,
                         icon: <Moon size={13} />,
-                        label: 'Dark',
+                        label: "Dark",
                       },
                       {
-                        value: 'system' as const,
+                        value: "system" as const,
                         icon: <Monitor size={13} />,
-                        label: 'System',
+                        label: "System",
                       },
                     ].map((opt) => (
                       <button
@@ -274,11 +274,11 @@ const Navbar: React.FC = () => {
                         className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium transition-colors duration-150 ${
                           theme === opt.value
                             ? isDark
-                              ? 'text-white bg-white/10'
-                              : 'text-gray-900 bg-black/5'
+                              ? "text-white bg-white/10"
+                              : "text-gray-900 bg-black/5"
                             : isDark
-                            ? 'text-gray-400 hover:text-white hover:bg-white/5'
-                            : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
+                              ? "text-gray-400 hover:text-white hover:bg-white/5"
+                              : "text-gray-500 hover:text-gray-900 hover:bg-black/3"
                         }`}
                       >
                         {opt.icon}
@@ -298,8 +298,8 @@ const Navbar: React.FC = () => {
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`md:hidden p-1.5 rounded-full transition-colors duration-150 ${
                 isDark
-                  ? 'text-gray-400 hover:text-white hover:bg-white/8'
-                  : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+                  ? "text-gray-400 hover:text-white hover:bg-white/8"
+                  : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
               }`}
             >
               {mobileOpen ? <X size={16} /> : <Menu size={16} />}
@@ -318,8 +318,8 @@ const Navbar: React.FC = () => {
               transition={{ duration: 0.2 }}
               className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-3 mt-2 z-50 ${
                 isDark
-                  ? 'bg-[#111827]/95 border-white/10 backdrop-blur-xl'
-                  : 'bg-white/95 border-black/8 shadow-xl backdrop-blur-xl'
+                  ? "bg-[#111827]/95 border-white/10 backdrop-blur-xl"
+                  : "bg-white/95 border-black/8 shadow-xl backdrop-blur-xl"
               }`}
               style={{ maxWidth: 720 }}
             >
@@ -331,11 +331,11 @@ const Navbar: React.FC = () => {
                     className={`w-full text-left px-4 py-3 rounded-xl text-[14px] font-medium transition-colors duration-150 ${
                       activeSection === link.href.slice(1)
                         ? isDark
-                          ? 'text-white bg-white/10'
-                          : 'text-gray-900 bg-black/5'
+                          ? "text-white bg-white/10"
+                          : "text-gray-900 bg-black/5"
                         : isDark
-                        ? 'text-gray-400 hover:text-white hover:bg-white/5'
-                        : 'text-gray-500 hover:text-gray-900 hover:bg-black/3'
+                          ? "text-gray-400 hover:text-white hover:bg-white/5"
+                          : "text-gray-500 hover:text-gray-900 hover:bg-black/3"
                     }`}
                   >
                     {link.label}
