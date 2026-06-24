@@ -176,7 +176,7 @@ const Contact: React.FC = () => {
                     LinkedIn
                   </p>
                   <p className={`text-[13px] font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
-                    linkedin.com/in/hritikcoder
+                    linkedin.com/in/hritik-kumar-dev
                   </p>
                 </div>
                 <ArrowUpRight size={14} className={`flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isDark ? 'text-gray-600' : 'text-gray-300'}`} />

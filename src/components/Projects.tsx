@@ -10,32 +10,6 @@ const GithubIcon = () => (
 );
 
 const projects = [
-  // {
-  //   id: 'vibemeet',
-  //   name: 'VibeMeet',
-  //   tagline: 'Community Networking Platform',
-  //   shortDesc: 'A platform for communities to connect, share events, and build genuine relationships online.',
-  //   image: '/projects/vibemeet.jpg',
-  //   color: '#7C3AED',
-  //   colorLight: '#EDE9FE',
-  //   status: 'Built',
-  //   year: '2025',
-  //   story: 'I noticed how scattered online communities were — Discord, Reddit, Facebook groups, all fragmented. VibeMeet started as an idea to consolidate community discovery and event-based networking into one clean interface.',
-  //   why: 'Wanted to build something with real authentication flows, social features, and a proper backend — not just a CRUD app.',
-  //   features: [
-  //     'Community creation and discovery',
-  //     'Event scheduling and RSVPs',
-  //     'Real-time activity feeds',
-  //     'User profiles and connections',
-  //     'JWT authentication system',
-  //   ],
-  //   tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Tailwind CSS'],
-  //   challenges: 'Managing complex relational data in MongoDB without SQL was a mental shift. Also had to architect the authentication middleware carefully to handle different permission levels.',
-  //   learnings: 'Understood how to design schemas for social graph data, and how to build scalable REST APIs with proper error handling.',
-  //   github: 'https://github.com/hritikhri/Vibemeet',
-  //   url:"",
-  //   demo: '#',
-  // },
   {
   id: 'inventory',
   name: 'Inventory Management System',
@@ -360,127 +334,114 @@ const Projects: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Projects */}
-        <div ref={ref} className="space-y-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.15, duration: 0.6, ease: 'easeOut' }}
-              className={`project-card group rounded-3xl border overflow-hidden ${
-                isDark
-                  ? 'bg-[#111827] border-white/8 hover:border-white/15 hover:shadow-2xl hover:shadow-black/30'
-                  : 'bg-white border-gray-100 hover:border-gray-200 hover:shadow-xl hover:shadow-black/5'
-              }`}
-            >
-              <div className="flex flex-col  rounded-lg lg:flex-row">
-                {/* Image */}
-                <div className={`lg:w-[45%] mt-10 ml-5 rounded-lg relative overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="img-zoom rounded-lg h-52 sm:h-64 lg:h-full max-h-[300px] min-h-[200px]">
-                    <img
-                      src={project.image || project.url}
-                      alt={project.name}
-                      className="object-cover rounded-lg "
-                      height={"100px"}
-                      // loading="lazy" 
-                    />
-                    <div className="absolute inset-0" style={{
-                      background: isDark
-                        ? 'linear-gradient(to right, rgba(17,24,39,0.4), transparent)'
-                        : 'linear-gradient(to right, rgba(255,255,255,0.2), transparent)',
-                    }} />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className={`flex-1 p-6 sm:p-8 flex flex-col justify-between ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <div>
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border`}
-                            style={{
-                              color: project.color,
-                              borderColor: `${project.color}30`,
-                              background: `${project.color}10`,
-                            }}
-                          >
-                            {project.status}
-                          </span>
-                          <span className={`text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>{project.year}</span>
-                        </div>
-                        <h3
-                          className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
-                          style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}
-                        >
-                          {project.name}
-                        </h3>
-                        <p className={`text-[13px] font-medium mt-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                          {project.tagline}
-                        </p>
-                      </div>
-                    </div>
-
-                    <p className={`text-[14px] sm:text-[15px] leading-relaxed mb-5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {project.shortDesc}
-                    </p>
-
-                    {/* Tech stack */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {project.tech.map(t => (
-                        <span
-                          key={t}
-                          className={`text-[11px] px-2.5 py-1 rounded-lg font-medium border ${
-                            isDark
-                              ? 'border-white/8 text-gray-400 bg-white/3'
-                              : 'border-gray-100 text-gray-500 bg-gray-50'
-                          }`}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-2.5 flex-wrap">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className={`btn-primary text-[13px] border font-medium ${
-                        isDark
-                          ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5'
-                          : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      Case Study <ArrowUpRight size={13} />
-                    </button>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`btn-primary text-[13px] border font-medium ${
-                        isDark
-                          ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5'
-                          : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      <GithubIcon /> GitHub
-                    </a>
-                    {/* <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary bg-[#4F8CFF] hover:bg-[#3a75e8] text-white text-[13px] font-medium shadow-lg shadow-blue-500/20"
-                    >
-                      <ExternalLink size={13} /> Live Demo
-                    </a> */}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+{/* Projects */}
+<div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  {projects.map((project, index) => (
+    <motion.div
+      key={project.id}
+      initial={{ opacity: 0, y: 18 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.08, duration: 0.5, ease: "easeOut" }}
+      className={`project-card group rounded-3xl border overflow-hidden h-full flex flex-col ${
+        isDark
+          ? "bg-[#111827] border-white/8 hover:border-white/15 hover:shadow-2xl hover:shadow-black/30"
+          : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-xl hover:shadow-black/5"
+      }`}
+    >
+      {/* Image */}
+      <div className="relative">
+        <div className="img-zoom h-40 sm:h-44 lg:h-40 overflow-hidden">
+          <img
+            src={project.image || project.url}
+            alt={project.name}
+            className="object-cover w-full h-full"
+          />
         </div>
+
+        <div
+          className="absolute inset-0"
+          style={{
+            background: isDark
+              ? "linear-gradient(to bottom, rgba(17,24,39,0.55), transparent 55%)"
+              : "linear-gradient(to bottom, rgba(255,255,255,0.7), transparent 55%)",
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          {/* Status + Year */}
+          <div className="flex items-center gap-2 mb-2">
+            <span
+              className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border"
+              style={{
+                color: project.color,
+                borderColor: `${project.color}30`,
+                background: `${project.color}10`,
+              }}
+            >
+              {project.status}
+            </span>
+            <span className={`text-[11px] ${isDark ? "text-gray-600" : "text-gray-400"}`}>
+              {project.year}
+            </span>
+          </div>
+
+          <h3
+            className={`text-lg sm:text-xl font-bold ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+            style={{ fontFamily: "Space Grotesk, sans-serif", letterSpacing: "-0.02em" }}
+          >
+            {project.name}
+          </h3>
+
+          <p className={`text-[12.5px] font-medium mt-1 ${
+            isDark ? "text-gray-400" : "text-gray-500"
+          }`}>
+            {project.tagline}
+          </p>
+
+          <p
+            className={`text-[13px] leading-relaxed mt-3 mb-4 ${
+              isDark ? "text-gray-400" : "text-gray-600"
+            } line-clamp-3`}
+          >
+            {project.shortDesc}
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-2.5 flex-wrap pt-4">
+          <button
+            onClick={() => setSelectedProject(project)}
+            className={`btn-primary text-[13px] border font-medium ${
+              isDark
+                ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5"
+                : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+            }`}
+          >
+            Case Study <ArrowUpRight size={13} />
+          </button>
+
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`btn-primary text-[13px] border font-medium ${
+              isDark
+                ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5"
+                : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+            }`}
+          >
+            <GithubIcon /> GitHub
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
       </div>
 
       {/* Case Study Modal */}

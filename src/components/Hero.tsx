@@ -78,59 +78,6 @@ const Hero: React.FC = () => {
       {/* Cursor glow */}
       <div ref={cursorRef} className="cursor-glow hidden lg:block" />
 
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(${isDark ? "#fff" : "#000"} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? "#fff" : "#000"} 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div
-          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full opacity-[0.06]"
-          style={{
-            background: "radial-gradient(circle, #4F8CFF, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full opacity-[0.04]"
-          style={{
-            background: "radial-gradient(circle, #a78bfa, transparent 70%)",
-          }}
-        />
-      </div>
-
-      {/* Floating tech icons - desktop only */}
-      {techIcons.map((icon) => (
-        <motion.div
-          key={icon.label}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            delay: icon.delay + 0.8,
-            duration: 0.5,
-            ease: "backOut",
-          }}
-          className={`absolute hidden xl:flex ${icon.pos} ${icon.floatClass} flex-col items-center gap-1.5`}
-        >
-          <div
-            className={`w-11 h-11 rounded-2xl flex items-center justify-center text-lg border shadow-sm ${
-              isDark
-                ? "bg-[#1a2234]/90 border-white/10"
-                : "bg-white border-gray-200/80 shadow-black/5"
-            }`}
-          >
-            {icon.emoji}
-          </div>
-          <span
-            className={`text-[10px] font-medium ${isDark ? "text-gray-500" : "text-gray-400"}`}
-          >
-            {icon.label}
-          </span>
-        </motion.div>
-      ))}
-
       <div className="container relative z-10 pt-24 pb-16">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
           {/* Left - Text content */}
@@ -146,25 +93,6 @@ const Hero: React.FC = () => {
             }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Status badge */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className="inline-flex items-center gap-2 mb-6"
-            >
-              <div
-                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[12px] font-medium border ${
-                  isDark
-                    ? "bg-green-500/10 border-green-500/20 text-green-400"
-                    : "bg-green-50 border-green-200 text-green-600"
-                }`}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Open to opportunities
-              </div>
-            </motion.div>
 
             {/* Headline */}
             <motion.h1
@@ -343,75 +271,9 @@ const Hero: React.FC = () => {
                   // loading="eager"
                 />
               </div>
-
-              {/* Floating info card */}
-              {/* <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className={`absolute -bottom-4 -left-4 sm:-left-8 px-4 py-3 rounded-2xl border shadow-xl ${
-                  isDark ? 'bg-[#111827] border-white/10' : 'bg-white border-gray-200/80'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white text-sm font-bold">
-                    HK
-                  </div>
-                  <div>
-                    <p
-                      className={`text-[12px] font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}
-                      style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-                    >
-                      Hritik Kumar
-                    </p>
-                    <p className={`text-[10px] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                      Full Stack Developer
-                    </p>
-                  </div>
-                </div>
-              </motion.div> */}
-
-              {/* Stack badge */}
-              {/* <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.5 }}
-                className={`absolute -top-3 -right-3 sm:-right-6 px-3 py-1.5 rounded-xl border text-[11px] font-medium ${
-                  isDark
-                    ? 'bg-[#111827] border-white/10 text-gray-300'
-                    : 'bg-white border-gray-200/80 text-gray-600 shadow-sm'
-                }`}
-              >
-                React · Node · Mongo
-              </motion.div> */}
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span
-            className={`text-[11px] font-medium tracking-widest uppercase ${
-              isDark ? "text-gray-600" : "text-gray-400"
-            }`}
-          >
-            scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className={`w-px h-8 ${
-              isDark
-                ? "bg-gradient-to-b from-gray-600 to-transparent"
-                : "bg-gradient-to-b from-gray-400 to-transparent"
-            }`}
-          />
-        </motion.div>
       </div>
     </section>
   );

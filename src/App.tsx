@@ -15,6 +15,8 @@ import BeyondCoding from './components/BeyondCoding';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
+import BuiltWithAI from './components/BuiltWithAI';
+
 
 const AppContent: React.FC = () => {
   return (
@@ -37,6 +39,8 @@ const AppContent: React.FC = () => {
         <Skills />
         <SectionDivider />
         <Projects />
+        <SectionDivider />
+        <BuiltWithAI/>
         <SectionDivider />
         <Achievements />
         <SectionDivider />
