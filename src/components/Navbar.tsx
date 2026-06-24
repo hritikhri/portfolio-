@@ -17,9 +17,17 @@ const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const themeMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+  check(); // run on mount
+  window.addEventListener('resize', check);
+  return () => window.removeEventListener('resize', check);
+}, []);
 
   // Scroll: detect scrolled state for shrink/grow
   useEffect(() => {
@@ -112,7 +120,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 "
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 md:px-8"
       style={{
         position: 'fixed',
         top: 0,
@@ -133,9 +141,12 @@ const Navbar: React.FC = () => {
         <motion.div
           ref={navContainerRef}
           animate={{
-            maxWidth: scrolled ? 380 : 720,
-            marginTop: scrolled ? 8 : 16,
-          }}
+  // mobile: 320 → 240   |   desktop: 720 → 420
+  maxWidth: scrolled
+    ? isMobile ? 240 : 420   // ← AFTER scroll
+    : isMobile ? 320 : 720,  // ← BEFORE scroll
+  marginTop: scrolled ? 8 : 16,
+}}
           transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
           className={`w-full flex items-center gap-1 rounded-full border transition-colors duration-300 ${
             isDark
