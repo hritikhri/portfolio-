@@ -69,7 +69,7 @@ const GithubSection: React.FC = () => {
         <div className="h-px w-12 bg-[#4F8CFF]/30" />
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+      <div className="flex flex-row sm:flex-row sm:items-center gap-3">
         <h2
           className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
             isDark ? 'text-white' : 'text-gray-900'
