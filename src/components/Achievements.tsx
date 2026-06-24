@@ -1,13 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
-
-const counters = [
-  { value: 15, suffix: '+', label: 'Projects Built', emoji: '🚀', desc: 'Real-world applications shipped' },
-  { value: 18, suffix: '+', label: 'Technologies', emoji: '⚙️', desc: 'Tools learned by building' },
-  { value: 5, suffix: '+', label: 'Certifications', emoji: '🏆', desc: 'Verified skill credentials' },
-  { value: 3, suffix: '+', label: 'Years Learning', emoji: '📚', desc: 'Consistent growth journey' },
-];
+import { counters } from '@/utils/stats';
 
 const useCounter = (target: number, isInView: boolean, duration = 1500) => {
   const [count, setCount] = useState(0);

@@ -1,19 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { focusedOn, mystats } from '@/utils/stats';
 
 const About: React.FC = () => {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
-
-  const stats = [
-    { value: '15+', label: 'Projects built' },
-    { value: '18+', label: 'Technologies' },
-    { value: '3+', label: 'Years learning' },
-    { value: '5', label: 'Certifications' },
-  ];
 
   return (
     <section id="about" className="py-24 relative">
@@ -70,7 +64,7 @@ const About: React.FC = () => {
           >
             {/* Stats grid */}
             <div className="grid grid-cols-2 gap-4 mb-8">
-              {stats.map((stat, i) => (
+              {mystats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
@@ -108,7 +102,7 @@ const About: React.FC = () => {
                 Currently focused on
               </p>
               <div className="flex flex-wrap gap-2">
-                {['DSA', 'System Design', 'Next.js 15', 'WebRTC', 'Backend Architecture'].map(item => (
+                {focusedOn.map(item => (
                   <span
                     key={item}
                     className={`text-[12px] px-3 py-1.5 rounded-full border font-medium ${

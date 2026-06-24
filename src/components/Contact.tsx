@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Mail, Send, ArrowUpRight, Check } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import emailjs from '@emailjs/browser';
+import { mylinks } from '@/utils/stats';
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">

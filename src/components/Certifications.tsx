@@ -2,76 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { X, Award, ExternalLink } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
-
-const certs = [
-  // {
-  //   title: "REST API",
-  //   issuer: "HackerRank",
-  //   year: "2025",
-  //   emoji: "🔗",
-  //   color: "#00B98E",
-  //   colorBg: "#00B98E15",
-  //   badge: "⭐ Verified",
-  //   url: "https://www.hackerrank.com/certificates/992656be24de",
-  //   preview: "https://www.hackerrank.com/certificates/iframe/992656be24de",
-  //   description:
-  //     "Demonstrates proficiency in REST API design principles, HTTP methods, status codes, and integration patterns.",
-  // },
-  {
-    title: "Python Basics",
-    issuer: "HackerRank",
-    year: "2025",
-    emoji: "🐍",
-    color: "#3776AB",
-    colorBg: "#3776AB15",
-    badge: "⭐ Verified",
-    url: "https://www.hackerrank.com/certificates/4609ddaf7c3e",
-    preview: "https://www.hackerrank.com/certificates/iframe/4609ddaf7c3e",
-    description:
-      "Covers Python fundamentals including data types, functions, control flow, and basic OOP concepts.",
-  },
-   {
-    title: "CSS, Bootstrap, JavaScript, Web Development Course",
-    issuer: "Udemy",
-    year: "2025",
-    emoji: "🌐",
-    color: "#61DAFB",
-    colorBg: "#61DAFB15",
-    badge: "📜 Certified",
-    url: "https://www.udemy.com/certificate/UC-cd4d3975-8570-49c5-85e4-6cce3c97d7a7/",
-    preview: "",
-    description:
-      "Learned core web development concepts including CSS, Bootstrap, and JavaScript, and built responsive, user-friendly websites.",
-  },
-  {
-    title: "Responsive Web Design",
-    issuer: "freeCodeCamp",
-    year: "2025",
-    emoji: "📱",
-    color: "#3d3db3",
-    colorBg: "#12337015",
-    badge: "🏆 300hrs",
-    url: "",
-    preview: "",
-    description:
-      "Completed 300 hours of coursework covering HTML, CSS, Flexbox, Grid, and responsive design principles.",
-  },
-
-  {
-    title: "React: All You Need to Know with Practical Project",
-    issuer: "Udemy",
-    year: "2025",
-    emoji: "⚛️",
-    color: "#61DAFB",
-    colorBg: "#61DAFB15",
-    badge: "📜 Certified",
-    url: "https://udemy-certificate.s3.amazonaws.com/image/UC-f4d0c38e-6bdd-48b1-8107-0e5927ee04ba.jpg",
-    preview: "",
-    description:
-      "Mastered modern React.js development including reusable components, Hooks, Context API, React Router, API integration, state management, and building production-ready frontend applications through practical projects.",
-  },
- 
-];
+import { certs } from "@/utils/stats";
 
 const Certifications: React.FC = () => {
   const { resolvedTheme } = useTheme();

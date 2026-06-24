@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { repos } from '@/utils/stats';
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -36,56 +37,6 @@ const languages = [
   { name: 'CSS', percent: 16, color: '#264DE4' },
   { name: 'HTML', percent: 12, color: '#E34F26' },
   { name: 'Other', percent: 8, color: '#8B949E' },
-];
-
-const repos = [
-  {
-    name: 'VibeMeet',
-    desc: 'Community networking platform for events, user connections, and social engagement.',
-    stars: 24,
-    lang: 'JavaScript',
-    color: '#7C3AED',
-    url: 'https://github.com/hritikhri/Vibemeet',
-  },
-  {
-    name: 'Real-Time Chat App',
-    desc: 'Socket.IO powered messaging platform with rooms, typing indicators, and online presence.',
-    stars: 19,
-    lang: 'JavaScript',
-    color: '#0EA5E9',
-    url: 'https://github.com/hritikhri/Real-Time-Chat-System',
-  },
-  {
-    name: 'Medicare',
-    desc: 'Doctor-patient management system with appointments, medical records, and admin controls.',
-    stars: 21,
-    lang: 'JavaScript',
-    color: '#059669',
-    url: 'https://github.com/hritikhri/medicare',
-  },
-  {
-    name: 'Social Media Platform',
-    desc: 'Full-stack social network featuring posts, likes, comments, follows, and notifications.',
-    stars: 32,
-    lang: 'JavaScript',
-    color: '#8B5CF6',
-    url: 'https://github.com/hritikhri/Social-Media-Platform-MERN-',
-  },
-  {
-    name: 'LinkedIn Clone',
-    desc: 'Professional networking platform with profiles, connections, feeds, and messaging.',
-    stars: 28,
-    lang: 'JavaScript',
-    color: '#0A66C2',
-    url: 'https://github.com/hritikhri/Linkedin-Clone',
-  },{
-  name: 'Shopping Website',
-  desc: 'MERN-based e-commerce application with user authentication, product management, shopping cart, and seamless online shopping experience.',
-  stars: 18,
-  lang: 'JavaScript',
-  color: '#10B981',
-  url: 'https://github.com/hritikhri/shoping-website',
-},
 ];
 
 const levelColors = {
