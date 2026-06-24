@@ -317,7 +317,7 @@ const Navbar: React.FC = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.97 }}
               transition={{ duration: 0.2 }}
-              className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-2 mt-2 z-50 ${
+              className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-2 mt-0 z-50 ${
                 isDark
                   ? "bg-[#111827]/95 border-white/10 backdrop-blur-xl"
                   : "bg-white/95 border-black/8 shadow-xl backdrop-blur-xl"
