@@ -379,8 +379,8 @@ const BuiltWithAI: React.FC = () => {
               }`}
             >
               {/* Image */}
-              <div className="relative lg:w-80 lg:flex-shrink-0">
-                <div className="img-zoom h-48 sm:h-56 lg:h-full overflow-hidden">
+              <div className="relative lg:w-120 flex items-center justify-center lg:flex-shrink-0">
+                <div className="img-zoom h-48 sm:h-56 lg:h-60 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.name}

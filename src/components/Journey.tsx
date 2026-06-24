@@ -38,14 +38,14 @@ const milestones = [
     emoji: '🚀',
     highlight: true,
   },
-  {
-    year: '2026',
-    title: 'Targeting SWE Roles',
-    description: 'Sharpening DSA, system design, and architecture. Preparing for software engineering opportunities. Ready to contribute to real teams.',
-    emoji: '🎯',
-    highlight: false,
-    isCurrent: true,
-  },
+{
+  year: '2026',
+  title: 'Targeting Software Development Roles',
+  description: 'Mastering modern web technologies, scalable architectures, and full-stack development. Actively preparing for software engineering opportunities through continuous learning and real-world projects.',
+  emoji: '🎯',
+  highlight: false,
+  isCurrent: true,
+},
 ];
 
 const Journey: React.FC = () => {
