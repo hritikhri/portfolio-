@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
           animate={{
             // mobile: 320 → 240   |   desktop: 720 → 420
             maxWidth: scrolled
-              ? isMobile ? 240 : 420 // ← AFTER scroll
+              ? isMobile ? 280 : 520 // ← AFTER scroll
               : isMobile ? 320 : 720, // ← BEFORE scroll
             marginTop: scrolled ? 8 : 16,
           }}
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
               : "bg-white/80 border-black/8 shadow-lg shadow-black/5 backdrop-blur-xl"
           }`}
           style={{
-            padding: scrolled ? "6px 8px" : "6px 12px",
+            padding: scrolled ? "4px 8px" : "6px 12px",
             transition: "padding 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
