@@ -78,7 +78,14 @@ const repos = [
     lang: 'JavaScript',
     color: '#0A66C2',
     url: 'https://github.com/hritikhri/Linkedin-Clone',
-  },
+  },{
+  name: 'Shopping Website',
+  desc: 'MERN-based e-commerce application with user authentication, product management, shopping cart, and seamless online shopping experience.',
+  stars: 18,
+  lang: 'JavaScript',
+  color: '#10B981',
+  url: 'https://github.com/hritikhri/shoping-website',
+},
 ];
 
 const levelColors = {

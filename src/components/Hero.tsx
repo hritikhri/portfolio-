@@ -70,213 +70,211 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex pt-5 items-center overflow-hidden"
-    >
-      {/* Cursor glow */}
-      <div ref={cursorRef} className="cursor-glow hidden lg:block" />
+return (
+  <section
+    id="hero"
+    className="relative min-h-screen flex pt-5 items-center overflow-hidden"
+  >
+    {/* Cursor glow */}
+    <div ref={cursorRef} className="cursor-glow hidden lg:block" />
 
-      <div className="container relative z-10 pt-24 pb-16">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
-          {/* Left - Text content */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
+    <div className="container relative z-10 pt-24 pb-16">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
+        
+        {/* Left - Text content */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+            },
+          }}
+          className="flex-1 w-full text-center lg:text-left"
+        >
+          {/* Headline */}
+          <motion.h1
             variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-              },
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
             }}
-            className="flex-1 text-center lg:text-left"
+            className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-4 ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+            style={{
+              fontFamily: "Space Grotesk, sans-serif",
+              letterSpacing: "-0.03em",
+            }}
           >
+            Hi, I'm <span className="gradient-text">Hritik.</span>
+          </motion.h1>
 
-            {/* Headline */}
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+          {/* Subheadline */}
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            }}
+            className={`text-lg sm:text-xl font-medium mb-5 ${
+              isDark ? "text-gray-300" : "text-gray-700"
+            }`}
+            style={{
+              fontFamily: "Space Grotesk, sans-serif",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            A BCA student who enjoys turning ideas into real software products.
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            }}
+            className={`text-base sm:text-[15px] leading-relaxed max-w-xl mx-auto lg:mx-0 ${
+              isDark ? "text-gray-400" : "text-gray-500"
+            }`}
+          >
+            I build full stack web applications using React, Next.js, and
+            Node.js. Not looking to check boxes — I'm genuinely interested in
+            how software gets made and what makes products actually work for
+            people.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            }}
+            className="flex flex-col sm:flex-row items-center lg:items-start gap-3 mt-8"
+          >
+            <motion.a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className={`text-4xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] mb-4 ${
-                isDark ? "text-white" : "text-gray-900"
+              className={`btn-primary ripple w-full sm:w-auto justify-center font-semibold ${
+                isDark
+                  ? "bg-[#4F8CFF] hover:bg-[#3a75e8] text-white shadow-lg shadow-blue-500/20"
+                  : "bg-[#4F8CFF] hover:bg-[#3a75e8] text-white shadow-lg shadow-blue-500/25"
               }`}
-              style={{
-                fontFamily: "Space Grotesk, sans-serif",
-                letterSpacing: "-0.03em",
-              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
             >
-              Hi, I'm <span className="gradient-text">Hritik.</span>
-            </motion.h1>
+              View My Work <ArrowRight size={15} />
+            </motion.a>
 
-            {/* Subheadline */}
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className={`text-lg sm:text-xl font-medium mb-5 ${
-                isDark ? "text-gray-300" : "text-gray-700"
+            <motion.a
+              href="/Hritik_Kumar_resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`btn-primary w-full sm:w-auto justify-center font-medium border ${
+                isDark
+                  ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5"
+                  : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
               }`}
-              style={{
-                fontFamily: "Space Grotesk, sans-serif",
-                letterSpacing: "-0.01em",
-              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
             >
-              A BCA student who enjoys turning ideas into real software
-              products.
-            </motion.p>
+              <Download size={15} /> Download Resume
+            </motion.a>
+          </motion.div>
 
-            {/* Description */}
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className={`text-base sm:text-[15px] leading-relaxed max-w-xl ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
-              I build full stack web applications using React, Next.js, and
-              Node.js. Not looking to check boxes — I'm genuinely interested in
-              how software gets made and what makes products actually work for
-              people.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            {/* <div className="sm:flex bg-red-900 item-center"> */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className="flex flex-col sm:flex-row items-center lg:items-start gap-3 mt-8"
-            >
+          {/* Social links */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            }}
+            className="flex items-center justify-center lg:justify-start gap-3 mt-6"
+          >
+            {[
+              {
+                icon: <GithubIcon />,
+                href: "https://github.com/hritikhri",
+                label: "GitHub",
+              },
+              {
+                icon: <LinkedinIcon />,
+                href: "http://www.linkedin.com/in/hritik-kumar-2b6b9724a",
+                label: "LinkedIn",
+              },
+              {
+                icon: <Mail size={17} />,
+                href: "mailto:hritik.dev.04@gmail.com",
+                label: "Email",
+              },
+            ].map((social) => (
               <motion.a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .getElementById("projects")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`btn-primary ripple w-full sm:w-auto justify-center font-semibold ${
-                  isDark
-                    ? "bg-[#4F8CFF] hover:bg-[#3a75e8] text-white shadow-lg shadow-blue-500/20"
-                    : "bg-[#4F8CFF] hover:bg-[#3a75e8] text-white shadow-lg shadow-blue-500/25"
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                View My Work <ArrowRight size={15} />
-              </motion.a>
-              <motion.a
-                href="/Hritik_Kumar_resume.pdf"
+                key={social.label}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`btn-primary w-full sm:w-auto justify-center font-medium border ${
+                aria-label={social.label}
+                className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-200 ${
                   isDark
-                    ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5"
-                    : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+                    ? "border-white/10 text-gray-400 hover:border-white/20 hover:text-white hover:bg-white/5"
+                    : "border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
                 }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Download size={15} /> Download Resume
+                {social.icon}
               </motion.a>
-            </motion.div>
-            {/* </div> */}
-
-            {/* Social links */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className="flex items-center justify-center lg:justify-start gap-3 mt-6"
+            ))}
+            <span
+              className={`text-sm ml-1 ${isDark ? "text-gray-500" : "text-gray-400"}`}
             >
-              {[
-                {
-                  icon: <GithubIcon />,
-                  href: "https://github.com/hritikhri",
-                  label: "GitHub",
-                },
-                {
-                  icon: <LinkedinIcon />,
-                  href: "http://www.linkedin.com/in/hritik-kumar-2b6b9724a",
-                  label: "LinkedIn",
-                },
-                {
-                  icon: <Mail size={17} />,
-                  href: "mailto:hritik.dev.04@gmail.com",
-                  label: "Email",
-                },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-200 ${
-                    isDark
-                      ? "border-white/10 text-gray-400 hover:border-white/20 hover:text-white hover:bg-white/5"
-                      : "border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-900 hover:bg-gray-50"
-                  }`}
-                  whileHover={{ scale: 1.08, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-              <span
-                className={`text-sm ml-1 ${isDark ? "text-gray-500" : "text-gray-400"}`}
-              >
-                Let's connect
-              </span>
-            </motion.div>
+              Let's connect
+            </span>
           </motion.div>
+        </motion.div>
 
-          {/* Right - Profile photo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
-            className="relative flex-shrink-0"
-          >
-            <div className="relative">
-              {/* Glow behind photo */}
-              <div
-                className="absolute inset-0 rounded-3xl opacity-30 blur-3xl"
-                style={{
-                  background: "linear-gradient(135deg, #4F8CFF, #a78bfa)",
-                  transform: "scale(0.95)",
-                }}
+        {/* Right - Profile photo (hidden on mobile, visible on lg+) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, x: 20 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
+          className="hidden lg:flex relative flex-shrink-0 items-center justify-center"
+        >
+          <div className="relative">
+            {/* Glow behind photo */}
+            <div
+              className="absolute inset-0 rounded-3xl opacity-30 blur-3xl"
+              style={{
+                background: "linear-gradient(135deg, #4F8CFF, #a78bfa)",
+                transform: "scale(0.95)",
+              }}
+            />
+
+            {/* Photo frame */}
+            <div
+              className={`relative w-72 h-72 xl:w-80 xl:h-80 rounded-3xl overflow-hidden border-2 ${
+                isDark
+                  ? "border-white/10"
+                  : "border-white shadow-2xl shadow-black/10"
+              }`}
+            >
+              <img
+                src="/profile.jpg"
+                alt="Hritik Kumar"
+                className="w-full h-full object-cover"
               />
-
-              {/* Photo frame */}
-              <div
-                className={`relative w-56 h-56 sm:w-72 sm:h-72 rounded-3xl overflow-hidden border-2 ${
-                  isDark
-                    ? "border-white/10"
-                    : "border-white shadow-2xl shadow-black/10"
-                }`}
-              >
-                <img
-                  src="/profile.jpg"
-                  alt="Hritik Kumar"
-                  className="w-full h-full object-cover"
-                  // loading="eager"
-                />
-              </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 export default Hero;
