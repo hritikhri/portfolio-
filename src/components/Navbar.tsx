@@ -30,21 +30,30 @@ const Navbar: React.FC = () => {
   }, []);
 
   // Scroll: detect scrolled state for shrink/grow
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 50);
+// Scroll: detect scrolled state for shrink/grow
+useEffect(() => {
+  let lastScrollY = window.scrollY;
 
-      // Close menus when scrolling
-      if (currentY > 50) {
-        setMobileOpen(false);
-        setThemeMenuOpen(false);
-      }
-    };
+  const handleScroll = () => {
+    const currentY = window.scrollY;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Scroll DOWN → shrink
+    if (currentY > lastScrollY && currentY > 50) {
+      setScrolled(true);
+      setMobileOpen(false);
+      setThemeMenuOpen(false);
+    }
+    // Scroll UP → grow back
+    else if (currentY < lastScrollY) {
+      setScrolled(false);
+    }
+
+    lastScrollY = currentY;
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   // Close dropdowns on outside click
   useEffect(() => {
@@ -145,7 +154,7 @@ const Navbar: React.FC = () => {
             maxWidth: scrolled
               ? isMobile ? 280 : 520 // ← AFTER scroll
               : isMobile ? 320 : 720, // ← BEFORE scroll
-            marginTop: scrolled ? 8 : 16,
+            marginTop: scrolled ? 10 : 16,
           }}
           transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
           className={`w-full flex items-center gap-1 rounded-full border transition-colors duration-300 ${
@@ -154,7 +163,7 @@ const Navbar: React.FC = () => {
               : "bg-white/80 border-black/8 shadow-lg shadow-black/5 backdrop-blur-xl"
           }`}
           style={{
-            padding: scrolled ? "4px 8px" : "6px 12px",
+            padding: scrolled ? "4px 10px" : "6px 12px",
             transition: "padding 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
@@ -194,7 +203,7 @@ const Navbar: React.FC = () => {
                   style={{
                     paddingLeft: scrolled ? 8 : 14,
                     paddingRight: scrolled ? 8 : 14,
-                    fontSize: scrolled ? "11px" : "13px",
+                    fontSize: scrolled ? "13px" : "13px",
                     transition:
                       "padding 0.35s cubic-bezier(0.4,0,0.2,1), font-size 0.35s cubic-bezier(0.4,0,0.2,1)",
                   }}
