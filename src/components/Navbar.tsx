@@ -170,7 +170,8 @@ const Navbar: React.FC = () => {
             }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            hritik.
+            {/* hritik. */}
+            <img src="Linkedin_profile_pic.png" alt="profile picture" className="object-cover h-8 rounded-3xl" />
           </span>
 
           {/* Desktop nav links — hidden on mobile, visible md+ */}
@@ -316,19 +317,19 @@ const Navbar: React.FC = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.97 }}
               transition={{ duration: 0.2 }}
-              className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-3 mt-2 z-50 ${
+              className={`w-[calc(100%-24px)] sm:w-[calc(100%-48px)] md:hidden rounded-2xl border p-2 mt-2 z-50 ${
                 isDark
                   ? "bg-[#111827]/95 border-white/10 backdrop-blur-xl"
                   : "bg-white/95 border-black/8 shadow-xl backdrop-blur-xl"
               }`}
-              style={{ maxWidth: 720 }}
+              style={{ maxWidth: 190 }}
             >
               <div className="flex flex-col gap-0.5">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className={`w-full text-left px-4 py-3 rounded-xl text-[14px] font-medium transition-colors duration-150 ${
+                    className={`w-full text-left px-4 py-2 flex items-center justify-center rounded-xl text-[14px] font-medium transition-colors duration-150 ${
                       activeSection === link.href.slice(1)
                         ? isDark
                           ? "text-white bg-white/10"

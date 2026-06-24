@@ -263,6 +263,7 @@ return (
               }`}
             >
               <img
+                // src="/Linkedin_profile_pic-removebg-preview.png"
                 src="/profile.jpg"
                 alt="Hritik Kumar"
                 className="w-full h-full object-cover"
