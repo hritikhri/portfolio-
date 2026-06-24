@@ -41,23 +41,24 @@ const CounterCard: React.FC<{
           : 'bg-white border-gray-100 hover:border-gray-200 hover:shadow-lg hover:shadow-black/5'
       }`}
     >
-      <div className="text-3xl mb-3">{counter.emoji}</div>
+      {/* <div className="text-3xl mb-3"></div> */}
       <div className="flex items-end justify-center gap-0.5 mb-1">
         <span
           className={`text-4xl font-bold tabular-nums ${isDark ? 'text-white' : 'text-gray-900'}`}
           style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.03em' }}
         >
+          
           {count}
         </span>
         <span
           className="text-2xl font-bold text-[#4F8CFF] mb-0.5"
           style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-        >
+          >
           {counter.suffix}
         </span>
       </div>
       <p className={`text-[14px] font-semibold mb-1 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-        {counter.label}
+        {counter.emoji}{counter.label}
       </p>
       <p className={`text-[12px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
         {counter.desc}

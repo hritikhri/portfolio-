@@ -490,7 +490,7 @@ export const certs = [
     emoji: "📱",
     color: "#3d3db3",
     colorBg: "#12337015",
-    badge: "🏆 300hrs",
+    badge: "📜 Certified",
     url: "",
     preview: "",
     description:

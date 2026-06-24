@@ -52,7 +52,7 @@ const Certifications: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               onClick={() => setSelected(cert)}
-              className={`cert-card cursor-pointer p-5 rounded-2xl border group ${
+              className={`cert-card cursor-pointer p-5 rounded-2xl justify-center border group ${
                 isDark
                   ? "bg-[#111827] border-white/8 hover:border-white/20 hover:shadow-xl hover:shadow-black/30"
                   : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-lg shadow-sm"
