@@ -11,7 +11,6 @@ const skillCategories = [
       { name: 'React.js', level: 85, icon: '⚛️' },
       { name: 'Next.js', level: 75, icon: '▲' },
       { name: 'JavaScript', level: 88, icon: '🟨' },
-      // { name: 'TypeScript', level: 70, icon: '🔷' },
       { name: 'HTML5', level: 95, icon: '🔶' },
       { name: 'CSS3', level: 90, icon: '🔵' },
       { name: 'Tailwind CSS', level: 85, icon: '💨' },
@@ -49,6 +48,45 @@ const skillCategories = [
       { name: 'Postman', level: 75, icon: '📮' },
     ],
   },
+{
+  id: 'languages',
+  label: 'Programming Languages',
+  emoji: '💻',
+  skills: [
+    { name: 'C', level: 75, icon: '🔹' },
+    { name: 'C++', level: 80, icon: '⚡' },
+    { name: 'Java', level: 70, icon: '☕' },
+    { name: 'JavaScript', level: 88, icon: '🟨' },
+  ],
+},
+];
+const techExposure = [
+  'React',
+  'Next.js',
+  'Node.js',
+  'Express.js',
+  'MongoDB',
+  'Mongoose',
+  'Socket.IO',
+  'JavaScript',
+  'C',
+  'C++',
+  'Java',
+  'HTML5',
+  'CSS3',
+  'Tailwind CSS',
+  'Bootstrap',
+  'Vite',
+  'Git',
+  'GitHub',
+  'VS Code',
+  'Postman',
+  'JWT',
+  'REST API',
+  'Axios',
+  'Nodemailer',
+  'Cloudinary',
+  'Linux',
 ];
 
 const SkillBar: React.FC<{ name: string; level: number; icon: string; index: number; isDark: boolean; isInView: boolean }> = ({
@@ -201,11 +239,7 @@ const Skills: React.FC = () => {
             Full tech exposure
           </p>
           <div className="flex flex-wrap gap-2">
-            {[
-              'React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'Socket.IO',
-              'JavaScript', 'TypeScript', 'Tailwind', 'HTML5', 'CSS3',
-              'Git', 'GitHub', 'Postman', 'VS Code', 'JWT', 'REST API',
-            ].map(tech => (
+            {techExposure.map(tech => (
               <span
                 key={tech}
                 className={`skill-pill text-[12px] px-3 py-1.5 rounded-full border font-medium ${
