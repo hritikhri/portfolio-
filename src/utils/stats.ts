@@ -167,7 +167,7 @@ export const aiProjects = [
     color: "#7C3AED",
     colorLight: "#EDE9FE",
     status: "Built with MERN",
-    year: "2025",
+    year: "2025-2026",
 
     story:
       "I noticed that online communities are spread across multiple platforms like Discord, Reddit, and Facebook Groups, making meaningful interactions fragmented. I built VibeMeet to bring community discovery, social networking, and event-based engagement into a single unified platform.",
