@@ -440,32 +440,32 @@ export const projects = [
 ];
 
 export const certs = [
-  {
-    title: "REST API",
-    issuer: "HackerRank",
-    year: "2025",
-    emoji: "🔗",
-    color: "#00B98E",
-    colorBg: "#00B98E15",
-    badge: "⭐ Verified",
-    url: "https://www.hackerrank.com/certificates/992656be24de",
-    preview: "https://www.hackerrank.com/certificates/iframe/992656be24de",
-    description:
-      "Demonstrates proficiency in REST API design principles, HTTP methods, status codes, and integration patterns.",
-  },
-  {
-    title: "Python Basics",
-    issuer: "HackerRank",
-    year: "2025",
-    emoji: "🐍",
-    color: "#3776AB",
-    colorBg: "#3776AB15",
-    badge: "⭐ Verified",
-    url: "https://www.hackerrank.com/certificates/4609ddaf7c3e",
-    preview: "https://www.hackerrank.com/certificates/iframe/4609ddaf7c3e",
-    description:
-      "Covers Python fundamentals including data types, functions, control flow, and basic OOP concepts.",
-  },
+  // {
+  //   title: "REST API",
+  //   issuer: "HackerRank",
+  //   year: "2025",
+  //   emoji: "🔗",
+  //   color: "#00B98E",
+  //   colorBg: "#00B98E15",
+  //   badge: "⭐ Verified",
+  //   url: "https://www.hackerrank.com/certificates/992656be24de",
+  //   preview: "https://www.hackerrank.com/certificates/iframe/992656be24de",
+  //   description:
+  //     "Demonstrates proficiency in REST API design principles, HTTP methods, status codes, and integration patterns.",
+  // },
+  // {
+  //   title: "Python Basics",
+  //   issuer: "HackerRank",
+  //   year: "2025",
+  //   emoji: "🐍",
+  //   color: "#3776AB",
+  //   colorBg: "#3776AB15",
+  //   badge: "⭐ Verified",
+  //   url: "https://www.hackerrank.com/certificates/4609ddaf7c3e",
+  //   preview: "https://www.hackerrank.com/certificates/iframe/4609ddaf7c3e",
+  //   description:
+  //     "Covers Python fundamentals including data types, functions, control flow, and basic OOP concepts.",
+  // },
   {
     title: "CSS, Bootstrap, JavaScript, Web Development Course",
     issuer: "Udemy",
