@@ -33,6 +33,12 @@ const interests = [
     description: "Channels like Fireship, Theo, Primeagen. Not just watching — actually taking notes, building things, and forming opinions.",
     color: '#EF4444',
   },
+  {
+  emoji: '🏗️',
+  title: 'Product Thinking',
+  description: "I love thinking beyond code — understanding user problems, simplifying experiences, and building solutions that create real impact. Great software starts with empathy, not features.",
+  color: '#14B8A6',
+}
 ];
 
 const BeyondCoding: React.FC = () => {

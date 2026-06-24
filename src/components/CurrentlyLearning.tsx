@@ -28,6 +28,14 @@ const learningItems = [
     tagColor: '#10B981',
   },
   {
+  title: 'AI Coding Tools & Agents',
+  emoji: '🤖',
+  description: 'Exploring modern AI-powered development workflows, coding assistants, autonomous agents, and understanding how tools like Cursor, Claude Code, and AI agents can enhance software engineering productivity.',
+  progress: 40,
+  tag: 'Exploring',
+  tagColor: '#EC4899',
+},
+  {
     title: 'WebRTC',
     emoji: '📡',
     description: 'Exploring peer-to-peer communication for building video calling and real-time collaboration features.',
