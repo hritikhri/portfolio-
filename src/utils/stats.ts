@@ -571,3 +571,63 @@ export const repos = [
     url: "https://github.com/hritikhri/shoping-website",
   },
 ];
+
+export const milestones = [
+  {
+    year: "2020",
+    title: "Curiosity Sparks",
+    description:
+      "Started wondering how websites actually work. Opened browser DevTools for the first time and things got interesting.",
+    emoji: "🔍",
+    highlight: false,
+  },
+  {
+    year: "2022",
+    title: "Class 12 Complete",
+    description:
+      "Finished secondary education. Knew I wanted to go into technology — the only question was which path.",
+    emoji: "🎓",
+    highlight: false,
+  },
+  {
+    year: "2023",
+    title: "BCA Begins",
+    description:
+      "Enrolled in Bachelor of Computer Applications. Started with fundamentals — C, data structures, algorithms. The foundation phase.",
+    emoji: "💻",
+    highlight: false,
+  },
+  {
+    year: "2024",
+    title: "Frontend Development",
+    description:
+      "Learned HTML, CSS, JavaScript deeply. Picked up React. Built my first real UI. Got my first taste of shipping something that looks good.",
+    emoji: "⚛️",
+    highlight: false,
+  },
+  {
+    year: "2025",
+    title: "Full Stack Projects",
+    description:
+      "Built VibeMeet, a real-time chat app, and Medicare. Learned Node.js, Express, MongoDB, Socket.IO. Started thinking like a product engineer.",
+    emoji: "🚀",
+    highlight: true,
+  },
+{
+  year: "2026",
+  title: "Completed BCA",
+  description:
+    "Completed my BCA and strengthened my foundation in C, C++, and DSA. Explored modern web technologies, built several full-stack projects, and developed a deeper understanding of Object-Oriented Programming and software development.",
+  emoji: "🎓",
+  highlight: true,
+},
+  {
+    year: "2026",
+    title: "Targeting Software Development Roles",
+    description:
+      "Mastering modern web technologies, scalable architectures, and full-stack development. Actively preparing for software engineering opportunities through continuous learning and real-world projects.",
+    emoji: "🎯",
+    highlight: false,
+    isCurrent: true,
+  },
+];
