@@ -30,30 +30,30 @@ const Navbar: React.FC = () => {
   }, []);
 
   // Scroll: detect scrolled state for shrink/grow
-// Scroll: detect scrolled state for shrink/grow
-useEffect(() => {
-  let lastScrollY = window.scrollY;
+  // Scroll: detect scrolled state for shrink/grow
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
 
-  const handleScroll = () => {
-    const currentY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
 
-    // Scroll DOWN → shrink
-    if (currentY > lastScrollY && currentY > 50) {
-      setScrolled(true);
-      setMobileOpen(false);
-      setThemeMenuOpen(false);
-    }
-    // Scroll UP → grow back
-    else if (currentY < lastScrollY) {
-      setScrolled(false);
-    }
+      // Scroll DOWN → shrink
+      if (currentY > lastScrollY && currentY > 50) {
+        setScrolled(true);
+        setMobileOpen(false);
+        setThemeMenuOpen(false);
+      }
+      // Scroll UP → grow back
+      else if (currentY < lastScrollY) {
+        setScrolled(false);
+      }
 
-    lastScrollY = currentY;
-  };
+      lastScrollY = currentY;
+    };
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdowns on outside click
   useEffect(() => {
@@ -152,8 +152,12 @@ useEffect(() => {
           animate={{
             // mobile: 320 → 240   |   desktop: 720 → 420
             maxWidth: scrolled
-              ? isMobile ? 280 : 520 // ← AFTER scroll
-              : isMobile ? 320 : 720, // ← BEFORE scroll
+              ? isMobile
+                ? 280
+                : 520 // ← AFTER scroll
+              : isMobile
+                ? 320
+                : 720, // ← BEFORE scroll
             marginTop: scrolled ? 10 : 16,
           }}
           transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
@@ -180,7 +184,11 @@ useEffect(() => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             {/* hritik. */}
-            <img src="Linkedin_profile_pic.png" alt="profile picture" className="object-cover h-8 rounded-3xl" />
+            <img
+              src="Linkedin_profile_pic.png"
+              alt="profile picture"
+              className="object-cover h-8 rounded-3xl"
+            />
           </span>
 
           {/* Desktop nav links — hidden on mobile, visible md+ */}
@@ -224,16 +232,16 @@ useEffect(() => {
           <div className="flex items-center gap-1 sm:gap-1.5 ml-auto shrink-0">
             {/* Theme toggle */}
             <div className="relative" ref={themeMenuRef}>
-           <button
-  onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-  className={`flex items-center justify-center p-2 rounded-full transition-all duration-200 ${
-    isDark
-      ? "text-gray-400 hover:text-white hover:bg-white/8"
-      : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
-  }`}
->
-  {themeIcon}
-</button>
+              <button
+                onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+                className={`flex items-center justify-center p-2 rounded-full transition-all duration-200 ${
+                  isDark
+                    ? "text-gray-400 hover:text-white hover:bg-white/8"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-black/5"
+                }`}
+              >
+                {themeIcon}
+              </button>
 
               <AnimatePresence>
                 {themeMenuOpen && (

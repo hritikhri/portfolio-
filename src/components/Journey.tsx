@@ -33,7 +33,7 @@ const milestones = [
     description:
       "Learned HTML, CSS, JavaScript deeply. Picked up React. Built my first real UI. Got my first taste of shipping something that looks good.",
     emoji: "⚛️",
-    highlight: true,
+    highlight: false,
   },
   {
     year: "2025",
@@ -43,6 +43,14 @@ const milestones = [
     emoji: "🚀",
     highlight: true,
   },
+{
+  year: "2026",
+  title: "Completed BCA",
+  description:
+    "Completed my BCA and strengthened my foundation in C, C++, and DSA. Explored modern web technologies, built several full-stack projects, and developed a deeper understanding of Object-Oriented Programming and software development.",
+  emoji: "🎓",
+  highlight: true,
+},
   {
     year: "2026",
     title: "Targeting Software Development Roles",
