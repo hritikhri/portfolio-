@@ -16,6 +16,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
 import BuiltWithAI from './components/BuiltWithAI';
+import CodingProfiles from './components/CodingProfiles';
 
 
 const AppContent: React.FC = () => {
@@ -49,6 +50,8 @@ const AppContent: React.FC = () => {
         <Certifications />
         <SectionDivider />
         <GithubSection />
+        <SectionDivider />
+        <CodingProfiles />
         <SectionDivider />
         <BeyondCoding />
         <SectionDivider />
